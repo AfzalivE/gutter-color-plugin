@@ -1,19 +1,15 @@
 <idea-plugin>
-    <id>com.github.afzalive.guttercolorplugin</id>
+    <id>com.afzaln.guttercolorplugin</id>
     <name>gutter-color-plugin</name>
-    <vendor>afzalive</vendor>
+    <vendor>Afzal Najam</vendor>
 
     <!-- Product and plugin compatibility requirements -->
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.jetbrains.kotlin</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <applicationService serviceImplementation="com.github.afzalive.guttercolorplugin.services.MyApplicationService"/>
-        <projectService serviceImplementation="com.github.afzalive.guttercolorplugin.services.MyProjectService"/>
+        <codeInsight.lineMarkerProvider language="kotlin"
+            implementationClass="com.afzaln.guttercolor.ColorLineMarkerProvider" />
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.afzalive.guttercolorplugin.listeners.MyProjectManagerListener"
-                  topic="com.intellij.openapi.project.ProjectManagerListener"/>
-    </applicationListeners>
 </idea-plugin>

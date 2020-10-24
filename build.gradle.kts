@@ -7,6 +7,7 @@ plugins {
     // Java support
     id("java")
     // Kotlin support
+    // id("org.jetbrains.kotlin.jvm") version "1.4.10"
     id("org.jetbrains.kotlin.jvm") version "1.4.10"
     // gradle-intellij-plugin - read more: https://github.com/JetBrains/gradle-intellij-plugin
     id("org.jetbrains.intellij") version "0.5.0"
@@ -122,4 +123,8 @@ tasks {
         // https://jetbrains.org/intellij/sdk/docs/tutorials/build_system/deployment.html#specifying-a-release-channel
         channels(pluginVersion.split('-').getOrElse(1) { "default" }.split('.').first())
     }
+}
+
+tasks.withType<KotlinCompile>().all {
+    kotlinOptions.freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
 }
